@@ -5,7 +5,7 @@ Receive pushwoosh notifications using Quasar framework / vue.js
 
 The first step is always to generate a new plugin using Quasar CLI:
 
- $ quasar new boot 'file-name'
+    $ quasar new boot 'file-name'
 
 Where 'file-name' should be exchanged by a suitable name for your boot file.
 
