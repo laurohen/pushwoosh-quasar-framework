@@ -11,6 +11,36 @@ Open a new project in Quasar Framework
 
     $ quasar create <folder_name>
 
+Note:
+iOS Simulator can neither subscribe nor receive push notifications. Android and Windows Phone emulator will work.
+To integrate Pushwoosh with your Cordova application, follow these simple steps:
+
+1. Install the Plugin source code into your app:
+
+For Cordova: 
+
+    cordova plugin add pushwoosh-cordova-plugin
+
+2. Whitelist .pushwoosh.com domain in the config.xml file:
+
+    <access origin="*.pushwoosh.com" />
+
+Do not forget to add cordova-plugin-whitelist plugin for android platform.
+
+    cordova plugin add cordova-plugin-whitelist
+
+3. Get the google-services.json from your Firebase console as described here and add it to your project.
+
+
+4. Add the following section to your config.xml:
+
+    <platform name="android">
+       <resource-file src="google-services.json" target="app/google-services.json" />
+       ...
+    </platform>
+
+
+
 The first step is always to generate a new plugin using Quasar CLI:
 
     $ quasar new boot 'file-name'
@@ -53,9 +83,11 @@ In the boot file that was generated add the code below:
 
     // Initialize Pushwoosh. This will trigger all pending push notifications on start.
     pushwoosh.onDeviceReady({
-
-      appid: "XXXXX-XXXXX",
-
+        
+        //PUSHWOOSH_APP_ID
+      appid: "XXXXX-XXXXX", 
+      
+        //YOUR_FCM_SENDER_ID
       projectid: "XXXXXXXXXXXXX", 
 
       //serviceName: "MPNS_SERVICE_NAME" 
